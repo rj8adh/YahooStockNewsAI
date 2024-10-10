@@ -18,28 +18,3 @@ for info in page_info:
     if ':' in info.getText():
         continue
     print(info.getText())
-
-
-
-
-
-
-
-#------------------------------------------------------------------------------------------#
-
-
-
-
-# url='https://finance.yahoo.com/news/billionaires-deciding-sell-shares-well-114500994.html'
-# stocks = []
-
-# soup = bs4.BeautifulSoup(requests.get(url).content, 'html.parser')
-
-# # anchor = soup.select("p")
-
-# page_info = soup.find_all('p')
-
-# for info in page_info:
-
-#     print(info.getText())
-
