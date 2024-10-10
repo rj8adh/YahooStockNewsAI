@@ -1,5 +1,6 @@
 # ToDo: implement ai and ask if title is enough info, if not, go to URL and look at the related stock and first paragraph
 
+from News_Scraper import scrapeDetail
 import bs4
 import requests
 
@@ -23,7 +24,11 @@ for i in range(len(stocks) - 1):
     
     for atrb in anchor:
         print('Title: ', atrb['title'])
+        
         print('URL: ', atrb['href'])
+
+        scrapeDetail(atrb['href'], atrb['title'])
+
         if atrb != anchor[-1]:
             print('-------------------')
     
