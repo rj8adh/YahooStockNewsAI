@@ -1,3 +1,5 @@
+# TODO: Get rid of the annoying News • thing that gets printed
+
 from selenium import webdriver
 import bs4
 import json
