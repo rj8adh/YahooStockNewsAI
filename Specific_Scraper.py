@@ -1,6 +1,6 @@
 # ToDo: implement ai and ask if title is enough info, if not, go to URL and look at the related stock and first paragraph
 
-def scrapeDetail(url, headline=''):
+def scrapeDetail(url):
 
     import bs4
     import requests
@@ -24,4 +24,6 @@ def scrapeDetail(url, headline=''):
             continue
 
         output+=info.getText() + ' '
-    print(output)
+        
+    # print(output)
+    return output
