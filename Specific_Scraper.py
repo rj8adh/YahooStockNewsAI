@@ -1,4 +1,4 @@
-# ToDo: implement ai and ask if title is enough info, if not, go to URL and look at the related stock and first paragraph
+# TODO: implement ai and ask if title is enough info, if not, go to URL and look at the related stock and first paragraph
 
 def scrapeDetail(url):
 
