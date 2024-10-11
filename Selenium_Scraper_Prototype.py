@@ -1,8 +1,6 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 import bs4
 import json
-import re
 
 url = 'https://finance.yahoo.com/video/why-investor-skeptical-teslas-robotaxi-212201481.html'
 
