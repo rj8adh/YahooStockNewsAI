@@ -33,6 +33,7 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
 
         # all info is for all the info on a specific stock
         all_info = []
+        stock_titles = []
 
         print('*********************************************************\n\n' + stocks[i], '\n\n*********************************************************')
         soup = bs4.BeautifulSoup(requests.get(url + stocks[i] + '/').text, 'html.parser')
@@ -52,7 +53,7 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
             # check if there is any easy to access html on the page
             if article_info:
                 all_info.append(article_info)
-                all_titles.append(atrb['title'])
+                stock_titles.append(atrb['title'])
                 all_links.append(atrb['href'])
 
                 if printOut:
@@ -64,14 +65,17 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
 
             elif selenium_scrape:
                 all_info.append(seleniumScrape(atrb['href']))
-                all_titles.append(atrb['title'])
+                stock_titles.append(atrb['title'])
                 all_links.append(atrb['href'])
 
             if atrb != anchor[-1]:
                 if printOut:
                     print('-------------------')
 
+        # compile each stocks specifics into a nested list
         full_info.append(all_info)
+        all_titles.append(stock_titles)
+
     return full_info, all_titles, all_links
         
         # print(anchor)
