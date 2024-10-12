@@ -1,8 +1,6 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 from transformers import pipeline
 from Main_Scraper import scrapeInfo
-from openai import OpenAI
 
 pipe = pipeline("text-classification", model="mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis")
 
@@ -14,5 +12,9 @@ for i in range(len(data)):
     # print(title[i])
     # print(links[i])
     # print(data[i])
-    outputs = pipe(data[i])
-    print(outputs[0]['label'])
+    outputs = pipe(data[i], top_k=None)
+    if outputs[0]['label'] == 'neutral':
+        print('Title was:', title[i])
+        print('Neutral or:', outputs[1]['label'])
+    else:
+        print(outputs[0]['label'])

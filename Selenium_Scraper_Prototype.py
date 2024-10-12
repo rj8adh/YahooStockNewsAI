@@ -4,7 +4,7 @@ from selenium import webdriver
 import bs4
 import json
 
-url = 'https://finance.yahoo.com/video/why-investor-skeptical-teslas-robotaxi-212201481.html'
+url = 'https://finance.yahoo.com/m/7ba4c6e9-e00c-3c14-a4f5-caaf8dfbc5b9/tesla-stock-is-down-this.html'
 
 driver = webdriver.Chrome()
 driver.maximize_window()
@@ -28,8 +28,18 @@ elements_with_class = soup.select('p', attrs={'class' : 'yf-1pe5jgt'})
 
 # elements = re.split('</p>|<p|\n', elements)
 
+# stuff I dont want in the output
+matches = ["•", "Try again.", "Tip:", "Sign in to access your portfolio"]
+
+
+
 for element in elements_with_class:
-    print(element.getText())
+    # check if element is empty
+    if element.getText():
+        # check to see if element is junk
+        if any(x in element.getText() for x in matches):
+            continue
+        print(element.getText())
 
 # print(elements_with_class)
 
