@@ -51,6 +51,7 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
                 if printOut:
                     print(article_info)
 
+            # check if we are supposed to selenium scrape
             elif selenium_scrape and printOut:
                 print("Selenium Scraped:", seleniumScrape(atrb['href']))
 
