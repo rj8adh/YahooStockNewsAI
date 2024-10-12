@@ -76,7 +76,7 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
         full_info.append(all_info)
         all_titles.append(stock_titles)
 
-    return full_info, all_titles, all_links
+    return full_info, all_titles, all_links, stocks
         
         # print(anchor)
 
