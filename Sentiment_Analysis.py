@@ -17,5 +17,5 @@ for i in range(len(data)):
         print('Low Confidence Title Was:', title[i])
         print('Neutral or:', outputs[1]['label'])
     else:
-        print(title[i])
+        print('High Confidence Title Was:', title[i])
         print(outputs[0]['label'])
