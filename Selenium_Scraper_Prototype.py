@@ -43,8 +43,8 @@ for element in elements_with_class:
 
 # print(elements_with_class)
 
-with open("Results.json", mode="w") as write_file:
-    json.dump(content, write_file)
+# with open("Results.json", mode="w") as write_file:
+#     json.dump(content, write_file)
 
 # page_info = soup.select('a')
 
