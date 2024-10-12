@@ -51,8 +51,13 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
                 if printOut:
                     print(article_info)
 
+            elif selenium_scrape and printOut:
+                print("Selenium Scraped:", seleniumScrape(atrb['href']))
+
             elif selenium_scrape:
-                print("SELENIUEEFIMEFIMEFIMIMIMI", seleniumScrape(atrb['href']))
+                all_info.append(seleniumScrape(atrb['href']))
+                all_titles.append(atrb['title'])
+                all_links.append(atrb['href'])
 
             if atrb != anchor[-1]:
                 if printOut:
@@ -61,4 +66,4 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
         
         # print(anchor)
 
-scrapeInfo(True, True)
+# scrapeInfo(True, True)
