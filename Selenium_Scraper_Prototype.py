@@ -1,54 +1,48 @@
 # TODO: Get rid of the annoying News • thing that gets printed
 
-from selenium import webdriver
-import bs4
-import json
+def seleniumScrape(url):
 
-url = 'https://finance.yahoo.com/m/7ba4c6e9-e00c-3c14-a4f5-caaf8dfbc5b9/tesla-stock-is-down-this.html'
+    from selenium import webdriver
+    import bs4
+    # import json
 
-driver = webdriver.Chrome()
-driver.maximize_window()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+
+    all_info = ""
+
+    driver.get(url)
+
+    driver.implicitly_wait(10)
 
 
-driver.get(url)
+    # content = driver.find_elements(By.CLASS_NAME, 'body yf-5ef8bf')
 
-driver.implicitly_wait(10)
+    content = driver.page_source
 
+    # content = content.replace(",", "\n")
 
-# content = driver.find_elements(By.CLASS_NAME, 'body yf-5ef8bf')
+    soup = bs4.BeautifulSoup(content, 'html.parser')
+    elements_with_class = soup.select('p', attrs={'class' : 'yf-1pe5jgt'})
 
-content = driver.page_source
-
-# content = content.replace(",", "\n")
-
-soup = bs4.BeautifulSoup(content, 'html.parser')
-elements_with_class = soup.select('p', attrs={'class' : 'yf-1pe5jgt'})
-
-# elements = str(elements_with_class)
-
-# elements = re.split('</p>|<p|\n', elements)
-
-# stuff I dont want in the output
-matches = ["•", "Try again.", "Tip:", "Sign in to access your portfolio"]
+    # stuff I dont want in the output
+    matches = ["•", "Try again.", "Tip:", "Sign in to access your portfolio"]
 
 
 
-for element in elements_with_class:
-    # check if element is empty
-    if element.getText():
-        # check to see if element is junk
-        if any(x in element.getText() for x in matches):
-            continue
-        print(element.getText())
+    for element in elements_with_class:
+        # check if element is empty
+        if element.getText():
+            # check to see if element is junk
+            if any(x in element.getText() for x in matches):
+                continue
+            all_info += element.getText() + ' '
 
-# print(elements_with_class)
+    return all_info
 
-# with open("Results.json", mode="w") as write_file:
-#     json.dump(content, write_file)
+    # with open("Results.json", mode="w") as write_file:
+    #     json.dump(content, write_file)
 
-# page_info = soup.select('a')
-
-# print(content)
 
 """
 TEST LINKS:
