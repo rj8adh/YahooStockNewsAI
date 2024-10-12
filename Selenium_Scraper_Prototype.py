@@ -37,6 +37,10 @@ def seleniumScrape(url):
             if any(x in element.getText() for x in matches):
                 continue
             all_info += element.getText() + ' '
+    
+    # Hugging Face has 520 token limit
+    if len(all_info) > 1000:
+        all_info = all_info[0:999]
 
     return all_info
 
