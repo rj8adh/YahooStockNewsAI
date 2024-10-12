@@ -15,9 +15,11 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
 
     stocks = []
 
-    all_info = []
+    # full info will contain multiple all infos
+    full_info = []
     all_titles = []
     all_links = []
+
 
     stock = input("What stocks do you want to webscrape?(type end to quit) ")
     stocks.append(stock.upper())
@@ -26,7 +28,12 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
         stock = input("What stocks do you want to webscrape?(type end to quit) ")
         stocks.append(stock.upper())
 
+    # loops the same amount of times there are stocks(-1 for the end call)
     for i in range(len(stocks) - 1):
+
+        # all info is for all the info on a specific stock
+        all_info = []
+
         print('*********************************************************\n\n' + stocks[i], '\n\n*********************************************************')
         soup = bs4.BeautifulSoup(requests.get(url + stocks[i] + '/').text, 'html.parser')
         
@@ -63,7 +70,9 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
             if atrb != anchor[-1]:
                 if printOut:
                     print('-------------------')
-    return all_info, all_titles, all_links
+
+        full_info.append(all_info)
+    return full_info, all_titles, all_links
         
         # print(anchor)
 
