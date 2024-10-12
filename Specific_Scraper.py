@@ -12,9 +12,10 @@ def scrapeDetail(url):
 
     # get all the paragraph stuff
     page_info = soup.select('p')
-
-    # only get a portion of the info because you only need a little to understand the tone
+    
+    # delete the bottom portion of the article to get rid of extra irrelevant stuff
     del page_info[len(page_info)//3:]
+    
 
     # loop through paragraph item
     for info in page_info:
@@ -26,4 +27,8 @@ def scrapeDetail(url):
         output+=info.getText() + ' '
         
     # print(output)
+
+    # hugging face sentiment analysis has max of 512 tokens
+    if len(output) > 2000:
+        output = output[0:1999]
     return output
