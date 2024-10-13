@@ -13,9 +13,6 @@ def seleniumScrape(url):
 
     driver.get(url)
 
-    driver.implicitly_wait(10)
-
-
     # content = driver.find_elements(By.CLASS_NAME, 'body yf-5ef8bf')
 
     content = driver.page_source

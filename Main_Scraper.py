@@ -35,7 +35,7 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
         all_info = []
         stock_titles = []
 
-        print('*********************************************************\n\n' + stocks[i], '\n\n*********************************************************')
+        print('*'*20 + '\n\n' + stocks[i], '\n\n' + '*'*20)
         soup = bs4.BeautifulSoup(requests.get(url + stocks[i] + '/').text, 'html.parser')
         
         # print(soup)
@@ -80,4 +80,4 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
         
         # print(anchor)
 
-# scrapeInfo(True, True)
+# scrapeInfo(printOut=True)
