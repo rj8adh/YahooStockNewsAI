@@ -42,15 +42,16 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
         
         anchor = soup.find_all('a', attrs={'class':'subtle-link fin-size-small thumb yf-1e4diqp'})
         
+        # for headline in the anchor
         for atrb in anchor:
             
             if printOut:
                 print('Title: ', atrb['title'])
                 print('URL: ', atrb['href'])
 
-            article_info = scrapeDetail(atrb['href'])
+            article_info, relatedStocks = scrapeDetail(atrb['href'])     
 
-            # check if there is any easy to access html on the page
+            # check if scrapeDetail returned something, if not use selenium scraper
             if article_info:
                 all_info.append(article_info)
                 stock_titles.append(atrb['title'])
@@ -61,16 +62,40 @@ def scrapeInfo(printOut=False, selenium_scrape=False):
 
             # check if we are supposed to selenium scrape
             elif selenium_scrape and printOut:
-                print("Selenium Scraped:", seleniumScrape(atrb['href']))
+                seleniumDesc, relatedStocks = seleniumScrape(atrb['href'])
+                print("Selenium Scraped:", seleniumDesc)
+
+                all_info.append(seleniumDesc)
+                stock_titles.append(atrb['title'])
+                all_links.append(atrb['href'])                
+                    
 
             elif selenium_scrape:
-                all_info.append(seleniumScrape(atrb['href']))
+                seleniumDesc, relatedStocks = seleniumScrape(atrb['href'])
+
+                all_info.append(seleniumDesc)
                 stock_titles.append(atrb['title'])
                 all_links.append(atrb['href'])
 
             if atrb != anchor[-1]:
                 if printOut:
                     print('-------------------')
+
+            # Loop through every stock tagged in the article
+            for relatedStock in relatedStocks:
+                print('\n\nRELATED STOCK', relatedStock)
+                # Check if the related stock is the one you are asking for
+                if relatedStock == stocks[i]:
+                    containsRelated = True
+                    break
+
+                else:
+                    containsRelated = False
+
+            if not containsRelated:
+                all_info.pop()
+                stock_titles.pop()
+                all_links.pop()
 
         # compile each stocks specifics into a nested list
         full_info.append(all_info)
