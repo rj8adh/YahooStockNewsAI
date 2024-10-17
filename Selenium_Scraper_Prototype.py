@@ -14,11 +14,13 @@ def seleniumScrape(url):
     all_info = ""
     raw_stocks = []
     related_stocks = []
-
+    
+    # Increase performance by not loading images and stuff
     options = Options()
     options.add_argument("--blink-settings=imagesEnabled=false")
-    options.add_argument("--headless=new")
+    # options.add_argument("--headless=new")
 
+    # Configure a chrome webdriver with our defined options
     driver = webdriver.Chrome(options=options)
 
     driver.get(url)
@@ -37,6 +39,8 @@ def seleniumScrape(url):
     elements_with_class = soup.select('p', attrs={'class' : 'yf-1pe5jgt'})
     raw_stocks = [element.text for element in soup.find_all(class_="ticker medium hover2 border streaming extraPadding yf-138ga19")]
 
+    print("RAW STOCKS:", raw_stocks)
+
     # Takes the raw stock information and turns it into a list of just the stock names
     for stock in raw_stocks:
         split_stocks = stock.split('   ')
@@ -46,7 +50,7 @@ def seleniumScrape(url):
 
     # print(related_stocks)
 
-    # stuff I dont want in the output
+    # stuff I dont want in the output(junk)
     matches = ["•", "Try again.", "Tip:", "Sign in to access your portfolio"]
 
 
@@ -68,8 +72,8 @@ def seleniumScrape(url):
     # with open("Results.json", mode="w") as write_file:
     #     json.dump(content, write_file)
 
-info, stock = seleniumScrape('https://finance.yahoo.com/news/prediction-meta-platforms-worth-more-115300124.html')
-print(info)
+# info, stock = seleniumScrape('https://finance.yahoo.com/news/prediction-meta-platforms-worth-more-115300124.html')
+# print(stock)
 
 """
 TEST LINKS:

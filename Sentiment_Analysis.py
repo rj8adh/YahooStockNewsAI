@@ -9,14 +9,14 @@ pipe = pipeline("text-classification", model="mrm8488/distilroberta-finetuned-fi
 
 app = FastAPI()
 
-data, title, links, stock_order = scrapeInfo(True, True)
+data, title, links, stock_order = scrapeInfo(True, compareRelatedStocks=True)
 
 positives = 0
 negatives = 0
 
 # loops through every stock we asked for
 for stock in data:
-
+    print("\n\nSTOCK:", stock, "\n\n")
     print(f'\n\n\n{stock_order[counter]}\n\n\n')
 
     # loops through every stocks individual news articles

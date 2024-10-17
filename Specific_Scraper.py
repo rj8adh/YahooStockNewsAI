@@ -39,7 +39,3 @@ def scrapeDetail(url):
     if len(output) > 2000:
         output = output[0:1999]
     return output, related_stocks
-
-info, stocks = scrapeDetail('https://finance.yahoo.com/news/prediction-meta-platforms-worth-more-115300124.html')
-
-print(stocks)
