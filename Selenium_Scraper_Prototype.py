@@ -54,7 +54,6 @@ def seleniumScrape(url):
     matches = ["•", "Try again.", "Tip:", "Sign in to access your portfolio"]
 
 
-
     for element in elements_with_class:
         # check if element is empty
         if element.getText():
