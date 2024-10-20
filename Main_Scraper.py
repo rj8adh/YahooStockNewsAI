@@ -54,7 +54,7 @@ def scrapeInfo(printOut=False, selenium_scrape=False, compareRelatedStocks=False
                     print('URL: ', atrb['href'])
 
                 if not compareRelatedStocks:
-                    article_info, relatedStocks = scrapeDetail(atrb['href'])     
+                    article_info = scrapeDetail(atrb['href'])     
 
                     # check if scrapeDetail returned something, if not use selenium scraper
                     if article_info:

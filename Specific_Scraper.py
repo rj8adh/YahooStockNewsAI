@@ -7,7 +7,6 @@ def scrapeDetail(url):
     # print(soup)
 
     output = ''
-    related_stocks = []
 
     # get all the paragraph stuff
     page_info = soup.select('p')
@@ -29,4 +28,4 @@ def scrapeDetail(url):
     # hugging face sentiment analysis has max of 512 tokens or around 2500 characters
     if len(output) > 2000:
         output = output[0:1999]
-    return output, related_stocks
+    return output
