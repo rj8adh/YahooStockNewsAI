@@ -4,12 +4,10 @@ def scrapeDetail(url):
     import requests
 
     soup = bs4.BeautifulSoup(requests.get(url).content, 'html.parser')
+    # print(soup)
 
     output = ''
     related_stocks = []
-
-    # print(soup)
-    related_stocks = [element.text for element in soup.find_all(class_="symbol")]
 
     # get all the paragraph stuff
     page_info = soup.select('p')
