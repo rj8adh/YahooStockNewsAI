@@ -9,7 +9,7 @@ def scrapeDetail(url):
     output = ''
 
     # get all the paragraph stuff
-    page_info = soup.select('p')
+    page_info = soup.select('p', attrs={'class': 'yf-1pe5jgt'})
 
     # delete the bottom portion of the article to get rid of extra irrelevant stuff
     del page_info[len(page_info)//3:]
