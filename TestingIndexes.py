@@ -1,1 +1,4 @@
-raw_stocks = [' TSLA   -8.78% ', ' AVGO   -2.27% ']
+listie = [1, 2, 3, 4, 5]
+
+for i in range(2):
+    print(listie[i])

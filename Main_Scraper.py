@@ -8,17 +8,15 @@ def scrapeInfo(printOut=False, selenium_scrape=False, compareRelatedStocks=False
     import os
     from Selenium_Scraper_Prototype import seleniumScrape
 
+    # Placeholder for if I want to implement OpenAI in the future
     client = OpenAI(api_key=os.getenv("API_KEY"))
 
-
-    url='https://finance.yahoo.com/quote/'
 
     # full info will contain multiple all infos
     full_info = []
     stocks = []
     all_titles = []
     all_links = []
-
 
 
     stock = input("What stocks do you want to webscrape?(type end to quit) ")
@@ -34,7 +32,7 @@ def scrapeInfo(printOut=False, selenium_scrape=False, compareRelatedStocks=False
         # all info is for all the info on a specific stock
         all_info = []
         stock_titles = []
-        url = url + stocks[i]
+        url = 'https://finance.yahoo.com/quote/' + stocks[i]
 
         print('*'*20 + '\n\n' + stocks[i], '\n\n' + '*'*20)
         # Get info from base stock--where we get headlines and urls
@@ -94,16 +92,18 @@ def scrapeInfo(printOut=False, selenium_scrape=False, compareRelatedStocks=False
 
                 # Loop through every stock tagged in the article
                 for relatedStock in relatedStocks:
-                    print('\n\nRELATED STOCK', relatedStock)
+
+                    # print('\n\nRELATED STOCK', relatedStock)
+
                     # Check if the related stock is the one you are asking for
                     if relatedStock == stocks[i]:
                         containsRelated = True
-                        print('RELATED')
+                        # print('RELATED')
                         break
 
                     else:
                         containsRelated = False
-                        print('USELESS :/')
+                        # print('USELESS :/')
 
                 if not containsRelated:
                     all_info.pop()
@@ -125,4 +125,4 @@ def scrapeInfo(printOut=False, selenium_scrape=False, compareRelatedStocks=False
         # print(anchor)
 
 # x, y, z, stock = scrapeInfo(printOut=True, compareRelatedStocks=True)
-# print(y)
+# print(x)
