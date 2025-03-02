@@ -27,7 +27,7 @@ If requirements aren't updated, or you run into any conflicts with newer version
 Contributors names and contact info
 
 Aarjit Adhikari
-[@rj8](microrew0@gmail.com)
+[@microrew0@gmail.com](www.gmail.com)
 
 ## Version History
 
