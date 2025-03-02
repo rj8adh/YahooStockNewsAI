@@ -16,30 +16,22 @@ pip install -r requirements.txt
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Run the program by running Sentiment_Analysis.py
 
 ## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+If requirements aren't updated, or you run into any conflicts with newer versions, please let me know
 
 ## Authors
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Aarjit Adhikari
+[@rj8](microrew0@gmail.com)
 
 ## Version History
 
-* 0.2
+* 1.1
     * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
+* 1.0
     * Initial Release
